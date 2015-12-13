@@ -1,4 +1,4 @@
-# Baseline.sass
+# BaselineCSS
 
 Baseline is a vertical rythm system (ou vertical grid system) based on pixel-perfect concepts to develop views that needs a vertical size patterns.
 
