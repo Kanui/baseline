@@ -1,0 +1,64 @@
+/* Set your baseline here */
+$bl = 10px
+/* Set your max number of rows here */
+$bl-max-rows = 80
+/* $bl x $bl-max-rows = 800px <- your max height
+ */
+html
+  box-sizing: border-box
+body
+  margin: 0
+  padding: 0
+*, *:before, *:after
+  box-sizing: inherit
+[class*=bl-padding][class*=bl-]
+  box-sizing: content-box
+bl-generate($bl-prefix-name)
+  for $i in (1)..($bl-max-rows)
+    $bl-val = $bl * $i
+    .bl{$bl-prefix-name}-{$i}
+      height: $bl-val
+      overflow-y: hidden
+      &-auto
+        height: auto !important
+        min-height: $bl-val
+    .bl{$bl-prefix-name}-margin-t-{$i}
+      margin-top: $bl-val
+    .bl{$bl-prefix-name}-margin-b-{$i}
+      margin-bottom: $bl-val
+    .bl{$bl-prefix-name}-padding-t-{$i}
+      padding-top: $bl-val
+    .bl{$bl-prefix-name}-padding-b-{$i}
+      padding-bottom: $bl-val
+bl-typo($bl-ty-val)
+  margin: 0
+  padding: 0
+  font-size: ($bl-ty-val * $bl)
+  line-height: ($bl-ty-val * $bl)
+.bl-vertical
+  position: relative
+  top: 50%
+  -webkit-transform: translateY(-50%)
+  -ms-transform: translateY(-50%)
+  transform: translateY(-50%)
+.bl-no-margin-t
+  margin-top: 0 !important
+.bl-no-margin-b
+  margin-bottom: 0 !important
+.bl-no-margin
+  @extend .bl-no-margin-t
+  @extend .bl-no-margin-b
+/* all screens - initial sizes */
+bl-generate("")
+/* medium displays */
+@media only screen and (min-width: 40.0625em)
+  bl-generate("-medium")
+/* large displays */
+@media only screen and (min-width: 64.0625em)
+  bl-generate("-large")
+/* xlarge displays */
+@media only screen and (min-width: 90.0625em)
+  bl-generate("-xlarge")
+/* xxlarge displays */
+@media only screen and (min-width: 120.0625em)
+  bl-generate("-xxlarge")
